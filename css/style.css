@@ -1,0 +1,228 @@
+* {
+    margin:0;
+    padding:0;
+}
+body {
+    background: rgb(236, 236, 236);
+    font-family:sans-serif;
+}
+.centre {
+    margin:0 auto;
+    width:960px
+}
+p {
+    line-height:70px
+}
+h1 {
+    color:#2980b9
+}
+
+.link {
+    text-decoration: none;
+    padding: 20px;
+    background: rgb(0, 114, 198);
+    color:white;
+    margin-right:10px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    font-weight:bold;
+    width:160px;
+}
+.link:hover {
+    background: rgb(182, 207, 216);
+}
+span {
+    color:black;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+p:hover, span {
+    color:rgb(0, 114, 198);
+}
+
+input[type='submit']{
+    background-color:#d2f0f0;
+    color:rgb(0, 114, 198);
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    font-weight:bold;
+    padding:5px 20px 5px 20px;
+}
+input[type='submit']:hover{
+    background-color:rgb(0, 114, 198);
+    color:#DDEEEE;
+}
+
+input, form, h1, h2, h3, select, label {
+    padding: 5px 10px;
+}
+input[type='text'], select {
+    border-style:inset;
+}
+
+table,tr,td,tr {
+    text-align:left;    
+}
+table{
+    border-collapse:collapse;
+}
+table,th, td{
+    border: 1px solid black;
+}
+th, td{
+    padding: 3px;
+}
+th{
+    color:white;
+    background: black;
+}
+tr:nth-child(2n){
+    background:#ddd;    
+}
+tr:hover td{
+    color:blue; 
+}
+
+.banner {
+    position: absolute;
+    top: 0;
+    left:150px;
+    background-color: #DDEEEE;
+    width: 100%;
+    border-bottom:outset;
+}
+.banner-content {
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.main-content {
+    padding-top: 70px;
+    padding-left: 155px;
+}
+
+.navigator{
+    position:absolute;
+    top:0;
+    left:0;
+    background-color: #DDEEEE;
+    width:150px;
+    height:100%;
+    border-right:outset;
+}
+.nav-content{
+    text-align:center;
+}
+
+.nav-content a{
+    display:block;
+    text-decoration: none;
+    padding: 20px;
+    background: rgb(0, 114, 198);
+    color:white;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    font-weight:bold;
+
+}
+.nav-content a:hover{
+    background: #DDEEEE;
+    color:rgb(0, 114, 198);
+}
+
+.fieldLabel{
+    display:inline-block;
+    width:65px;
+}
+
+.textField:hover label {
+    color:rgb(0, 114, 198);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+.textField:hover .comment{
+    color:#D60B0B;
+	-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+.textField:hover input {
+    background-color:rgb(240, 248, 255);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+.combobox:hover select {
+    background-color:rgb(240, 248, 255);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+.combobox:hover label {
+    background-color:rgb(240, 248, 255);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+.comment {
+    color:gray;
+    font-size:x-small;
+}
+.submitDiv{
+    padding:20px 0px 0px 85px;
+}
+
+.searchResults{
+    background-color: #DDEEEE;
+    padding:10px;
+	border-radius: 15px;
+	border: 3px solid black;
+    padding:15px;
+}
+
+.valid{
+    background-color:#BAFFC0;
+
+}
+.selectAll:hover {
+	color:#D60B0B;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+
+.selectAll{
+	display:inline-block;
+	padding:15px;
+	border: 3px outset;	
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background: rgb(236, 236, 236);
+}
+
+.copyToClipboard{
+	display:inline-block;
+	padding:15px;
+	border: 3px outset;	
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background: rgb(236, 236, 236);
+}
+
+.valid, .invalid {
+	display: inline-block;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 3px outset;
+    padding:15px;
+	width:300px;
+}
+.valid, .invalid input{
+	vertical-align: middle;}
+
+.invalid{
+    background-color:#FFBABA;
+}
+
+.error{
+	color:#D60B0B;
+}

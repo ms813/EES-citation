@@ -1,0 +1,97 @@
+// NOTES
+
+ * IC>  added articles link that just dumps the data in the citation table
+ * IC>  tried to get stuff to add into the database from your form.
+        Not figured out how yet, will try tonight.
+        
+ * MS>  get_file_contents works for a bunch of links, but not for the one pasted in from ScholarOne?
+ * IC>  it works -> http://mc.manuscriptcentral.com/LongRequest/null?TAG_ACTION=DOWNLOAD_FILE_BY_NAME&DOCUMENT_ID=15181208&FILE_TO_DOWNLOAD=15181208_File000000_304025609.html-withlinks.htm&FILE_KEY=1166662313&FILE_NAME_KEY=-1204646326&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT_BLINDED&DOCUMENT_HASHCODE=1074894032&SANITY_CHECK_DOCUMENT_ID=15181208&CURRENT_ROLE_ID=1 
+        but not  -> http://mc.manuscriptcentral.com/LongRequest/ee?  TAG_ACTION=DOWNLOAD_PROOF_FILE&DOCUMENT_ID=  15181208&FILE_KEY=1166662313&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT&PROOF_FILE_TYPE=HTML&DOCUMENT_HASHCODE=1924825245&SANITY_CHECK_DOCUMENT_ID=15181208&RANDOM=688
+        there's a lot of similarities, maybe we can "change" the URL
+        I changed some of the numbers and it didn't affect the result
+ 
+ * IC>  Stuff can now be added to the database from your form (see articles.php).
+        MS> it seems to work fine, except for the pages box?
+            IC> [fixed]
+            
+    MS> couldnt resist the logo, sorry haha
+    
+    MS> ive changed the search results page (good work btw!) so that it displays the regular article on the left
+        >and the htmlspecialchars on the right. The title is chomped up with insane tags, I dont really understand why...
+        
+        >This seems to be the useful bits, ill try searching for "PaperTitle" and ending at /p, then strip tags
+        <p class=01PaperTitle><b style='mso-bidi-font-weight:normal'><font size=5 face="Times New Roman"><span lang=EN-GB style='font-size:16.0pt;mso-fareast-language: KO'>A h</span><span lang=EN-GB>igh-</span></font></b><span lang=EN-GB style='mso-fareast-language:KO'>p</span><span lang=EN-GB>erformance </span><span lang=EN-GB style='mso-fareast-language:KO'>p</span><span lang=EN-GB>hotoelectrochemical </span><span lang=EN-GB style='mso-fareast-language:KO'>c</span><span lang=EN-GB>ell</span><span lang=EN-GB style='mso-fareast-language:KO'> employing a</span><span lang=EN-GB> </span><span lang=EN-GB style='mso-fareast-language: KO'>t</span><span lang=EN-GB>apered Si </span><span lang=EN-GB style='mso-fareast-language:KO'>n</span><span lang=EN-GB>anohole </span><span lang=EN-GB style='mso-fareast-language:KO'>a</span><span lang=EN-GB>rray</span>
+    
+    MS> Success! I've dug out the title, no regexp in sight :)
+    
+    MS> Also added a keywords field to the input form
+    
+    MS> A late push and I've got the references out too :):)
+    
+    IC> Congrats! I pasted in the link and nothing happened I think it may have posted to the wrong page (articles.php
+    
+    IC> I'll alter the table to allow for keywords
+    
+    MS> funny links to reviewer comments etc
+        http://mc.manuscriptcentral.com/LongRequest/ee?TAG_ACTION=DOWNLOAD_PROOF_FILE&DOCUMENT_ID=15193337&FILE_KEY=1167646469&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT&PROOF_FILE_TYPE=HTML&DOCUMENT_HASHCODE=1243247822&SANITY_CHECK_DOCUMENT_ID=15193337&RANDOM=1235
+        http://mc.manuscriptcentral.com/LongRequest/null?TAG_ACTION=DOWNLOAD_FILE_BY_NAME&DOCUMENT_ID=15193337&FILE_TO_DOWNLOAD=15193337_File000005_304323834.html-withlinks.htm&FILE_KEY=1167646469&FILE_NAME_KEY=-454131832&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT_BLINDED&DOCUMENT_HASHCODE=1729068336&SANITY_CHECK_DOCUMENT_ID=15193337&CURRENT_ROLE_ID=1
+        http://mc.manuscriptcentral.com/LongRequest/null?TAG_ACTION=DOWNLOAD_FILE_BY_NAME&DOCUMENT_ID=15193337&FILE_TO_DOWNLOAD=15193337_File000001_304323524.html-withlinks.htm&FILE_KEY=1167646469&FILE_NAME_KEY=-2122080734&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT_BLINDED&DOCUMENT_HASHCODE=1729068336&SANITY_CHECK_DOCUMENT_ID=15193337&CURRENT_ROLE_ID=1
+        http://mc.manuscriptcentral.com/LongRequest/null?TAG_ACTION=DOWNLOAD_FILE_BY_NAME&DOCUMENT_ID=15193337&FILE_TO_DOWNLOAD=15193337_File000002_304323552.html-withlinks.htm&FILE_KEY=1167646469&FILE_NAME_KEY=-102052034&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT_BLINDED&DOCUMENT_HASHCODE=1729068336&SANITY_CHECK_DOCUMENT_ID=15193337&CURRENT_ROLE_ID=1
+        http://mc.manuscriptcentral.com/LongRequest/null?TAG_ACTION=DOWNLOAD_FILE_BY_NAME&DOCUMENT_ID=15193337&FILE_TO_DOWNLOAD=15193337_File000003_304323557.html-withlinks.htm&FILE_KEY=1167646469&FILE_NAME_KEY=-1854194428&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT_BLINDED&DOCUMENT_HASHCODE=1729068336&SANITY_CHECK_DOCUMENT_ID=15193337&CURRENT_ROLE_ID=1
+        http://mc.manuscriptcentral.com/LongRequest/null?TAG_ACTION=DOWNLOAD_FILE&DOCUMENT_ID=15193337&FILE2DOC_ID=249811633&FILE_KEY=1167646469&DOWNLOAD=TRUE&FILE_TYPE=DOCUMENT_BLINDED
+        
+    IC> seach on pubs.rsc.org for EES last year with the title "energy batteries"    
+        http://pubs.rsc.org/en/results/journals?Category=Journal&AllText=solar&IncludeReference=false&SelectJournal=true&ArtRefJournalName=Energy%20Environmental%20Science%3B%20&DateRange=true&SelectDate=true&DateToYear=2012&DateFromYear=2012&Type=Months&DateFromMonth=01&DateToMonth=12&PriceCode=False
+        THis won't work as reults can't be accessed because theyre generated with JS
+        - may have to go with the WOK reports
+        MS  > Cant we access our platform SQL database directly?
+                IC> I doubt they'll let us. Updating ours once a month or so isn't too much of a pain
+                There needs to be a clear advange of using this over just using the platform title search
+                
+            > I think the WoK thing will be easier to implement, but less high-tech.
+            > Lets go with it just now, we can always look to upgrade if people actually use this thing
+        
+        
+    MS> Uploaded WoK html report of EES 2013 papers
+        > Ill build a form tonight to upload the file and store the data in arrays
+          with a view to you putting it into the sql database
+          IC> sure. I'm working on the link choosing the right page.
+          
+    MS> have you got skype or something I can text chat to you on? the chat here is still broken...
+        IC> gmail chat ian.coates@gmail.com
+        MS> cool i think i sent you an invite... its been updated a lot since I last used it!
+        
+    MS> cant delimit WoK data using tables – there are some random ones in the middle of records.
+        >could delimit by "PT" (seems to be the first tag in each paper), but obvs has to be case specific so as not to pick up stuff in the middle of an abstract
+        
+        > when exploding, I lose the delimiter. Is there a way to explode without discarding it or do i just have to manually add it back in?
+        IC> you always lose it with explode. which delimiter is it? you probably don't need it if you're storing stuff in an array
+        
+    MS> I've split the WoK file into a 2d array $detail[papers][individual details]
+        and stripped the tags. Now to build it into an associative array using the 2 letter codes...
+        
+    IC> currently working on more appropriate array  
+        IC> cracked it! see upload.php
+    
+IC> ***Unrelated idea***    
+    Use markdown (http://en.wikipedia.org/wiki/Markdown)
+    instead of xml for editing. Might be worth making a markdown-style editor
+    e.g.
+    {fig1
+        {title
+            Graph showing SEM of Fe2O3.
+        }
+        {link
+            c3ra12345a-f1.tif
+        }
+    }
+    
+    MS> so we would need some sort of markdown -> xml translator?
+        >it looks like an easy to use language, but xml is also fairly easy to use and has loads of prebuilt libraries too
+        >considering the end user should never really be modifying it at the source, it doesnt matter what markup is used behind the scenes right
+            IC> So you say, stick to xml and just change the UI?
+            
+    MS> style sheets make me so mad, can you take a look at the bottom of 'search.php' and try to figure out why it wont style the checkboxes?
+        IC> I see you used http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-easy-css3-checkboxes-and-radio-buttons/
+            I can't see what's wrong. I'd strip it back and build it up piece by piece. 
+            Maybe if you've got other checkboxes in the css it will break
